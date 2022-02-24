@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class PaddleMovement : MonoBehaviour {
     [SerializeField] GameObject leftPaddle, rightPaddle;
+    [SerializeField] float range = 40;
 
     // Update is called once per frame
     void Update() {
         float horizontalInput = 0;
         float verticalInput = 0;
-        float range = 40;
+        Vector3 p = leftPaddle.transform.parent.eulerAngles;
 
         horizontalInput = Input.GetAxis("LeftX");
         verticalInput = Input.GetAxis("LeftY");
-        leftPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput, -range*verticalInput, 0f);
+        leftPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput+p.x, -range*verticalInput+p.y, p.z);
         
         
         horizontalInput = Input.GetAxis("RightX");
         verticalInput = Input.GetAxis("RightY");
-        rightPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput, range*verticalInput, 0f);
-        
-
-        
-        // if (deadZone < horizontalInput || horizontalInput < -deadZone) {
-        //     Debug.Log("h: " + horizontalInput);
-        // }
-        // if (deadZone < verticalInput || verticalInput < -deadZone) {
-        //     Debug.Log("v: " + verticalInput);
-        // }
+        rightPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput+p.x, range*verticalInput+p.y, p.z);
     }
 }
