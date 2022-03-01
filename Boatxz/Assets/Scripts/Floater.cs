@@ -13,5 +13,6 @@ public class Floater : MonoBehaviour {
             float displacementMultiplier = Mathf.Clamp01((-transform.position.y) / depthBeforeSubmerged) * displacementAmount;
             rigidbody.AddForce(new Vector3(0f, Mathf.Abs(Physics.gravity.y)* displacementMultiplier, 0f), ForceMode.Acceleration);
         }
+        transform.rotation = Quaternion.identity;
     }
 }

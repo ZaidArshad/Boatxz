@@ -233,7 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hull: {fileID: 1550227700}
   leftPaddle: 1
-  velocityMultiplier: 1
   player: {fileID: 843382910}
 --- !u!1 &255792380
 GameObject:
@@ -280,7 +279,7 @@ GameObject:
   - component: {fileID: 574379878}
   - component: {fileID: 574379877}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574379875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.2, y: -2.07, z: 50.3}
+  m_LocalPosition: {x: -202, y: -2.07, z: 203}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 2035468266}
@@ -760,7 +759,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hull: {fileID: 1550227700}
   leftPaddle: 0
-  velocityMultiplier: 1
   player: {fileID: 843382910}
 --- !u!1 &887537774
 GameObject:
@@ -775,7 +773,7 @@ GameObject:
   - component: {fileID: 887537777}
   - component: {fileID: 887537776}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: white
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -789,7 +787,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887537774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.2, y: -2.07, z: -51.4}
+  m_LocalPosition: {x: -201, y: -2.07, z: -201}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 2035468266}
@@ -935,7 +933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.16248952, y: 0.68818396, z: -0.16248952, w: 0.68818396}
-  m_LocalPosition: {x: -8.1, y: 7.61, z: 0}
+  m_LocalPosition: {x: -8.1, y: 4.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 843382911}
@@ -1143,6 +1141,82 @@ Transform:
   m_Father: {fileID: 255792381}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1153622008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153622009}
+  - component: {fileID: 1153622011}
+  - component: {fileID: 1153622010}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1153622009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153622008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -489, y: -15.76, z: -446}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2035468266}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!154 &1153622010
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153622008}
+  m_Material: {fileID: 0}
+  m_Enabled: 0
+  m_TerrainData: {fileID: 15600000, guid: de803ff6ed6495c47a1a49d506d909f0, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &1153622011
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153622008}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: de803ff6ed6495c47a1a49d506d909f0, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
 --- !u!1 &1161904087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1230,7 @@ GameObject:
   - component: {fileID: 1161904090}
   - component: {fileID: 1161904089}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1170,7 +1244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161904087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.1, y: -2.07, z: 50.3}
+  m_LocalPosition: {x: 199, y: -2.07, z: 201}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 2035468266}
@@ -1251,7 +1325,7 @@ GameObject:
   - component: {fileID: 1335808733}
   - component: {fileID: 1335808732}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1265,7 +1339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335808730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.2, y: -2.07, z: -50.6}
+  m_LocalPosition: {x: 200, y: -2.07, z: -199}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 2035468266}
@@ -1425,7 +1499,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550227695}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 4.41}
   m_LocalScale: {x: 6.91, y: 0.53, z: 2}
   m_Children:
@@ -1463,7 +1537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1550227700}
   depthBeforeSubmerged: 1
-  displacementAmount: 3
+  displacementAmount: 6
 --- !u!114 &1550227702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,6 +1617,7 @@ Transform:
   - {fileID: 887537775}
   - {fileID: 1335808731}
   - {fileID: 1161904088}
+  - {fileID: 1153622009}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1559,7 +1634,7 @@ GameObject:
   - component: {fileID: 2038092088}
   - component: {fileID: 2038092087}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Water
   m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1574,7 +1649,7 @@ Transform:
   m_GameObject: {fileID: 2038092085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -7.1, z: 0}
-  m_LocalScale: {x: 100, y: 3, z: 100}
+  m_LocalScale: {x: 400, y: 3, z: 400}
   m_Children: []
   m_Father: {fileID: 2035468266}
   m_RootOrder: 0
