@@ -29,7 +29,6 @@ public class PaddleWatcher : MonoBehaviour {
     private void OnTriggerStay(Collider collider) {
         velocity = (oldX - player.transform.InverseTransformPoint(transform.position).x) * velocityMultiplier;
         oldX = player.transform.InverseTransformPoint(transform.position).x;
-        Debug.Log(velocity);
 
         if (collider.gameObject.tag == "Water") {
 

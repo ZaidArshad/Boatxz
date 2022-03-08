@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Paddle
   - Water
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
