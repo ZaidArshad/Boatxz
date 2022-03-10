@@ -5,7 +5,6 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     private void Awake() {
-        QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 2;  // VSync must be disabled
     }
 }
