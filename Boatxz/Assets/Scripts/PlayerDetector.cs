@@ -17,6 +17,7 @@ public class PlayerDetector : MonoBehaviour {
             if (!isPassed && canPass) {
                 isPassed = true;
                 topBar.GetComponent<Renderer>().material = redMaterial;
+                collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(transform.gameObject);
                 if (nextCheckpoint != null) {
                     nextCheckpoint.GetChild(3).gameObject.GetComponent<PlayerDetector>().setCanPass(true);
                 }

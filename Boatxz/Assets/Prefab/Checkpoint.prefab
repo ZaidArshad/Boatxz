@@ -432,4 +432,3 @@ MonoBehaviour:
   topBar: {fileID: 5794089650446464699}
   redMaterial: {fileID: 2100000, guid: 58c15e05c9f30db49abc7c09306e1bde, type: 2}
   greenMaterial: {fileID: 2100000, guid: 7fea2c3bec1d1a94c87d75e83c8509f3, type: 2}
-  nextCheckpoint: {fileID: 0}

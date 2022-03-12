@@ -23,15 +23,13 @@ public class PaddleMovement : MonoBehaviour {
         Vector3 p = leftPaddle.transform.parent.eulerAngles;
 
         speedText.text = Mathf.Abs(hullBody.velocity.magnitude * KNOTS_PER_METER).ToString("F2") + KNOT_SYMBOL_STR;
-        
 
-        horizontalInput = Input.GetAxis("LeftX");
-        verticalInput = Input.GetAxis("LeftY");
+        horizontalInput = Input.GetAxis("P1LeftX");
+        verticalInput = Input.GetAxis("P1LeftY");
         leftPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput+p.x, -range*verticalInput+p.y, p.z);
         
-        
-        horizontalInput = Input.GetAxis("RightX");
-        verticalInput = Input.GetAxis("RightY");
+        horizontalInput = Input.GetAxis("P1RightX");
+        verticalInput = Input.GetAxis("P1RightY");
         rightPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput+p.x, range*verticalInput+p.y, p.z);
     }
 }
