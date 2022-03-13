@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HullAttributes : MonoBehaviour
 {
     private GameObject lastCheckpoint;
     private Vector3 startingPosition;
     private Quaternion startingRotation;
+    private int playerNumber;
 
     private void Awake() {
-        startingPosition = LevelAttributes.Instance.getStartingPosition().position;
-        startingRotation = LevelAttributes.Instance.getStartingPosition().rotation; 
+        playerNumber = MultiplayerManager.Instance.join(gameObject);
+        startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
+        startingRotation = MultiplayerManager.Instance.getStartingRotation();
         transform.position = startingPosition;
         transform.rotation = startingRotation;
     }
@@ -33,5 +36,23 @@ public class HullAttributes : MonoBehaviour
             }
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
             transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    }
+
+    public void OnRB(InputAction.CallbackContext context) {
+        if (context.performed) {
+            reset();
+        }
+    }
+
+    public void OnB(InputAction.CallbackContext context) {
+        if (context.performed) {
+            MultiplayerManager.Instance.leave(playerNumber);
+        }
+    }
+
+    public void OnStart(InputAction.CallbackContext context) {
+        if (context.performed) {
+            MultiplayerManager.Instance.startGame();
+        }
     }
 }

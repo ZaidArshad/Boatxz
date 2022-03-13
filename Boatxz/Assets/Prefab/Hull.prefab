@@ -453,8 +453,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2083577389278837683}
         m_TargetAssemblyTypeName: HullAttributes, Assembly-CSharp
-        m_MethodName: reset
-        m_Mode: 1
+        m_MethodName: OnRB
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -465,6 +465,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 73c154ae-9032-4edf-8e3d-e72c6d89796c
     m_ActionName: Gamepad/RB[/XInputControllerWindows/rightShoulder,/XInputControllerWindows1/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 181047fc-fc4d-453d-a0fa-a944f090dd80
+    m_ActionName: Gamepad/A[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2083577389278837683}
+        m_TargetAssemblyTypeName: HullAttributes, Assembly-CSharp
+        m_MethodName: OnB
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 975b7cd5-7bfa-498e-877c-4d2cb9bac492
+    m_ActionName: Gamepad/B[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2083577389278837683}
+        m_TargetAssemblyTypeName: HullAttributes, Assembly-CSharp
+        m_MethodName: OnStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 12551009-a445-419b-ad7d-56015689c4b6
+    m_ActionName: Gamepad/Start[/XInputControllerWindows/start,/XInputControllerWindows1/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gamepad

@@ -34,8 +34,11 @@ public class PaddleMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Vector3 p = leftPaddle.transform.parent.eulerAngles;
+        paddle();
+    }
 
+    void paddle() {
+        Vector3 p = leftPaddle.transform.parent.eulerAngles;
         speedText.text = Mathf.Abs(hullBody.velocity.magnitude * KNOTS_PER_METER).ToString("F2") + KNOT_SYMBOL_STR;
         leftPaddle.transform.eulerAngles = new Vector3(-range*leftX+p.x, -range*leftY+p.y, p.z);
         rightPaddle.transform.eulerAngles = new Vector3(-range*rightX+p.x, range*rightY+p.y, p.z);
