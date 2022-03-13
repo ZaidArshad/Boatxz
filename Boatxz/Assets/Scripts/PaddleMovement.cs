@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PaddleMovement : MonoBehaviour {
     [SerializeField] GameObject leftPaddle, rightPaddle;
@@ -12,24 +13,31 @@ public class PaddleMovement : MonoBehaviour {
     private const float KNOTS_PER_METER = 1.94384f;
     private const string KNOT_SYMBOL_STR = "kn";
 
+    private float leftX, leftY, rightX, rightY;
+
     private void Start() {
         hullBody = gameObject.GetComponent<Rigidbody>();
     }
 
+    public void OnLeftX(InputAction.CallbackContext context) {
+        leftX = context.ReadValue<float>();
+    }
+    public void OnLeftY(InputAction.CallbackContext context) {
+        leftY = -context.ReadValue<float>();
+    }
+    public void OnRightX(InputAction.CallbackContext context) {
+        rightX = context.ReadValue<float>();
+    }
+    public void OnRightY(InputAction.CallbackContext context) {
+        rightY = -context.ReadValue<float>();
+    }
+
     // Update is called once per frame
     void Update() {
-        float horizontalInput = 0;
-        float verticalInput = 0;
         Vector3 p = leftPaddle.transform.parent.eulerAngles;
 
         speedText.text = Mathf.Abs(hullBody.velocity.magnitude * KNOTS_PER_METER).ToString("F2") + KNOT_SYMBOL_STR;
-
-        horizontalInput = Input.GetAxis("P1LeftX");
-        verticalInput = Input.GetAxis("P1LeftY");
-        leftPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput+p.x, -range*verticalInput+p.y, p.z);
-        
-        horizontalInput = Input.GetAxis("P1RightX");
-        verticalInput = Input.GetAxis("P1RightY");
-        rightPaddle.transform.eulerAngles = new Vector3(-range*horizontalInput+p.x, range*verticalInput+p.y, p.z);
+        leftPaddle.transform.eulerAngles = new Vector3(-range*leftX+p.x, -range*leftY+p.y, p.z);
+        rightPaddle.transform.eulerAngles = new Vector3(-range*rightX+p.x, range*rightY+p.y, p.z);
     }
 }

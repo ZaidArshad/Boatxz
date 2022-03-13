@@ -5,28 +5,21 @@ using UnityEngine;
 public class HullAttributes : MonoBehaviour
 {
     private GameObject lastCheckpoint;
-    [SerializeField] Transform startingPosition;
+    private Vector3 startingPosition;
+    private Quaternion startingRotation;
 
-    private void Start() {
-        string[] names = Input.GetJoystickNames();
-         for (int x = 0; x < names.Length; x++) {
-             Debug.Log(names[x]);
-         }
-    }
-
-    private void Update() {
-        bool restart = Input.GetButtonUp("P1RB");
-        //Debug.Log(Input.GetAxis("P2RightX"));
-        if (restart) {
-            reset();
-        }
+    private void Awake() {
+        startingPosition = LevelAttributes.Instance.getStartingPosition().position;
+        startingRotation = LevelAttributes.Instance.getStartingPosition().rotation; 
+        transform.position = startingPosition;
+        transform.rotation = startingRotation;
     }
 
     public void setLastCheckpoint(GameObject checkpoint) {
         lastCheckpoint = checkpoint;
     }
 
-    private void reset() {
+    public void reset() {
         if (lastCheckpoint != null) {
                 transform.eulerAngles = new Vector3(
                     lastCheckpoint.transform.eulerAngles.x,
@@ -35,8 +28,8 @@ public class HullAttributes : MonoBehaviour
                 transform.position = lastCheckpoint.transform.position;
             }
             else {
-                transform.position = startingPosition.position;
-                transform.rotation = startingPosition.rotation;
+                transform.position = startingPosition;
+                transform.rotation = startingRotation;
             }
             transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
             transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
