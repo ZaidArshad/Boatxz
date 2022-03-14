@@ -9,7 +9,7 @@ public class HullMovement : MonoBehaviour {
 
     private const int VELOCITY_MULTIPLIER = 30;
     private const float TURN_COEFFIECENT = 0.10f;
-    private const float ELEVATION_COEFFIECENT = 0.2f;
+    private const float ELEVATION_COEFFIECENT = 0.1f;
     private const float WATER_DRAG = 0.5f;
     private const float WATER_ANGULAR_DRAG = 0.5f;
     private const float DRAG = 0.1f;

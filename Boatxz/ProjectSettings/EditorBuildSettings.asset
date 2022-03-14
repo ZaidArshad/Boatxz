@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SpeedRun.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/MultiplayerRace.unity
+    path: Assets/Scenes/Race.unity
+    guid: a28738ca1ba79ab4fad3b3e4c7ab2916
+  - enabled: 1
+    path: Assets/Scenes/BoatHunt.unity
     guid: 107e1d8d14ae62a479a3ee62d1e53b80
+  - enabled: 1
+    path: Assets/Scenes/Battle.unity
+    guid: 2c3d11b0287cad34fbe0a878b0a2f706
   m_configObjects: {}
