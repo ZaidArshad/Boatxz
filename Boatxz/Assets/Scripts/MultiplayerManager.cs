@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+public enum GameMode {Lobby, Speedrun, MultiplayerRace, MultiplayerBattle, BoatHunt};
 public class MultiplayerManager : MonoBehaviour {
     [SerializeField] private Transform startingSpot;
     [SerializeField] Camera startingCam;
+    public GameMode gameMode;
     
     public static MultiplayerManager Instance;
     GameObject[] joinedPlayers = new GameObject[2];
     bool gameStarted = false;
-
     private const int STARTING_OFFSET = -20;
 
     private void Awake() {

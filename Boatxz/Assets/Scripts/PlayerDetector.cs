@@ -14,21 +14,33 @@ public class PlayerDetector : MonoBehaviour {
     // Update is called once per frame
     private void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Player") {
-            if (!isPassed && canPass) {
-                isPassed = true;
-                topBar.GetComponent<Renderer>().material = redMaterial;
-                collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(transform.gameObject);
-                if (nextCheckpoint != null) {
-                    nextCheckpoint.GetChild(3).gameObject.GetComponent<PlayerDetector>().setCanPass(true);
+            if (MultiplayerManager.Instance.gameMode == GameMode.Lobby) {
+                GameMode mode = gameObject.GetComponentInParent<CheckpointAttributes>().gameMode;
+                if (mode == GameMode.Speedrun) {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 }
-                else {
-                    Debug.Log("Finished");
+                if (mode == GameMode.MultiplayerRace) {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+                }
+            }
+
+            else if (MultiplayerManager.Instance.gameMode == GameMode.Speedrun)  {
+                if (!isPassed && canPass) {
+                    isPassed = true;
+                    topBar.GetComponent<Renderer>().material = redMaterial;
+                    collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(transform.gameObject);
+                    if (nextCheckpoint != null) {
+                        nextCheckpoint.GetChild(3).gameObject.GetComponent<PlayerDetector>().setCanPass(true);
+                    }
+                    else {
+                        Debug.Log("Finished");
+                    }
                 }
             }
         }
     }
 
-    public void setCheckpoint(Transform checkpoint) {
+    public void setNextCheckpoint(Transform checkpoint) {
         nextCheckpoint = checkpoint;
     }
 

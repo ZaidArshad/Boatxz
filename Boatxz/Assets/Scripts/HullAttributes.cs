@@ -6,14 +6,15 @@ using UnityEngine.InputSystem;
 public class HullAttributes : MonoBehaviour
 {
     private GameObject lastCheckpoint;
-    private Vector3 startingPosition;
-    private Quaternion startingRotation;
+    public Vector3 startingPosition;
+    public Quaternion startingRotation;
     private int playerNumber;
 
     private void Awake() {
-        playerNumber = MultiplayerManager.Instance.join(gameObject);
-        startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
-        startingRotation = MultiplayerManager.Instance.getStartingRotation();
+        if (MultiplayerManager.Instance != null) { playerNumber = MultiplayerManager.Instance.join(gameObject);
+            startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
+            startingRotation = MultiplayerManager.Instance.getStartingRotation();
+        }
         transform.position = startingPosition;
         transform.rotation = startingRotation;
     }
