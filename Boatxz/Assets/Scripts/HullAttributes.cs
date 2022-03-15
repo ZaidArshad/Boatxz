@@ -5,22 +5,22 @@ using UnityEngine.InputSystem;
 
 public class HullAttributes : MonoBehaviour
 {
-    private GameObject lastCheckpoint;
-    public Vector3 startingPosition;
-    public Quaternion startingRotation;
+    private PlayerDetector lastCheckpoint;
+    public Transform startingPosition;
     private int playerNumber;
 
-    private void Awake() {
-        if (MultiplayerManager.Instance != null) { playerNumber = MultiplayerManager.Instance.join(gameObject);
-            startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
-            startingRotation = MultiplayerManager.Instance.getStartingRotation();
-        }
-        transform.position = startingPosition;
-        transform.rotation = startingRotation;
+    private void Start() {
+        playerNumber = MultiplayerManager.Instance.join(gameObject);
+        startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
+        goToOriginalStart();
     }
 
-    public void setLastCheckpoint(GameObject checkpoint) {
+    public void setLastCheckpoint(PlayerDetector checkpoint) {
         lastCheckpoint = checkpoint;
+    }
+
+    public PlayerDetector getLastCheckpoint() {
+        return lastCheckpoint;
     }
 
     public void reset() {
@@ -30,13 +30,11 @@ public class HullAttributes : MonoBehaviour
                     lastCheckpoint.transform.eulerAngles.y-90,
                     lastCheckpoint.transform.eulerAngles.z);
                 transform.position = lastCheckpoint.transform.position;
+                stopForces();
             }
             else {
-                transform.position = startingPosition;
-                transform.rotation = startingRotation;
+                goToOriginalStart();
             }
-            transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
     public void OnRB(InputAction.CallbackContext context) {
@@ -55,5 +53,16 @@ public class HullAttributes : MonoBehaviour
         if (context.performed) {
             MultiplayerManager.Instance.startGame();
         }
+    }
+
+    private void stopForces() {
+        transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    }
+
+    private void goToOriginalStart() {
+        transform.position = startingPosition.position;
+        transform.rotation = startingPosition.rotation;
+        stopForces();
     }
 }

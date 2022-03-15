@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public enum GameMode {Lobby, Speedrun, MultiplayerRace, MultiplayerBattle, BoatHunt};
 public class MultiplayerManager : MonoBehaviour {
-    [SerializeField] private Transform startingSpot;
     [SerializeField] Camera startingCam;
+    [SerializeField] Transform[] startingSpot = new Transform[4];
     public GameMode gameMode;
     
     public static MultiplayerManager Instance;
-    GameObject[] joinedPlayers = new GameObject[2];
+    GameObject[] joinedPlayers = new GameObject[4];
     bool gameStarted = false;
     private const int STARTING_OFFSET = -20;
 
@@ -20,18 +20,12 @@ public class MultiplayerManager : MonoBehaviour {
         }
     }
 
-    public Vector3 getStartingPosition(int playerNumber) {
-        Vector3 position = startingSpot.position;
-        position.z += playerNumber*STARTING_OFFSET;
-        return position;
-    }
-
-    public Quaternion getStartingRotation() {
-        return startingSpot.rotation;
+    public Transform getStartingPosition(int playerNumber) {
+        return startingSpot[playerNumber];
     }
 
     public void startGame() {
-        for (int i = 0; i < joinedPlayers.Length; i++) {
+        for (int i = 0; i < 2; i++) {
             if (joinedPlayers[i] == null) return;
         }
         Destroy(startingCam);
