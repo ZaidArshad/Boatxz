@@ -341,6 +341,7 @@ RectTransform:
   m_LocalScale: {x: 6.91, y: 0.53, z: 2}
   m_Children:
   - {fileID: 2083577388825733398}
+  - {fileID: 318013629832912032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -377,8 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1da44d6f19dad54ea7553c320889f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPosition: {x: 0, y: 0, z: 0}
-  startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  torpedo: {fileID: 3753858990710599237, guid: 98a5fffac5a305e4c97821deac5f7ae7, type: 3}
+  startingPosition: {fileID: 0}
 --- !u!114 &2083577389278837685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +533,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 12551009-a445-419b-ad7d-56015689c4b6
     m_ActionName: Gamepad/Start[/XInputControllerWindows/start,/XInputControllerWindows1/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2083577389278837683}
+        m_TargetAssemblyTypeName: HullAttributes, Assembly-CSharp
+        m_MethodName: OnRT
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4e2e233a-07ec-4b83-b044-5823b23c6ae1
+    m_ActionName: Gamepad/RT[/XInputControllerWindows1/rightTrigger,/XInputControllerWindows/rightTrigger,/XInputControllerWindows2/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gamepad
@@ -1155,3 +1172,38 @@ Transform:
   m_Father: {fileID: 2083577388825733398}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1 &7171113818736723265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 318013629832912032}
+  m_Layer: 0
+  m_Name: Cannon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &318013629832912032
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171113818736723265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3137028724434437516}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.35, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}

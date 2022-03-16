@@ -46,9 +46,11 @@ public class MultiplayerManager : MonoBehaviour {
     }
 
     public void leave(int playerNumber) {
-        if (!gameStarted) {
-            Destroy(joinedPlayers[playerNumber]);
-            joinedPlayers[playerNumber] = null;
-        }
+        Destroy(joinedPlayers[playerNumber]);
+        joinedPlayers[playerNumber] = null;
+    }
+
+    public bool isGameStarted() {
+        return gameStarted;
     }
 }

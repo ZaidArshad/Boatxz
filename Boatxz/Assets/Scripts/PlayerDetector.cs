@@ -73,7 +73,7 @@ public class PlayerDetector : MonoBehaviour {
         if (lastCheckpoint == null || lastCheckpoint.nextCheckpoint == this) {
             collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(this);
             if (nextCheckpoint == null) {
-                UnityEngine.Debug.Log("finish");
+                UnityEngine.Debug.Log(collider.transform.parent.GetComponent<HullAttributes>().getPlayerNumber());
             }
         }
     }

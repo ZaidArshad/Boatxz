@@ -195,6 +195,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2083577389278837680, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577389278837681, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: displacementAmount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577389278837681, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: depthBeforeSubmerged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2083577389278837682, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Name
       value: Hull

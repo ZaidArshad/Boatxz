@@ -7,6 +7,8 @@ TagManager:
   - Paddle
   - Water
   - Checkpoint
+  - Lava
+  - Torpedo
   layers:
   - Default
   - TransparentFX

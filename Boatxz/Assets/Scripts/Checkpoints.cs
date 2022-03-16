@@ -9,10 +9,6 @@ public class Checkpoints : MonoBehaviour {
     PlayerDetector childDetector;
     Stopwatch timer = new Stopwatch();
 
-    private void Awake() {
-        if (MultiplayerManager.Instance.gameMode == GameMode.Speedrun) childDetector.timer = timer;
-    }
-
     private void Start() {
         setUpCheckpoints();
     }
@@ -20,6 +16,7 @@ public class Checkpoints : MonoBehaviour {
     private void setUpCheckpoints() {
         for (int i = 0; i < transform.childCount; i++) {
             childDetector = transform.GetChild(i).GetChild(3).GetComponent<PlayerDetector>();
+            if (MultiplayerManager.Instance.gameMode == GameMode.Speedrun) childDetector.timer = timer;
             if (i == 0) childDetector.setCanPass(true);
             if (i < transform.childCount-1) childDetector.setNextCheckpoint(transform.GetChild(i+1).GetChild(3).GetComponent<PlayerDetector>());
         }
