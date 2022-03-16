@@ -9,6 +9,7 @@ TagManager:
   - Checkpoint
   - Lava
   - Torpedo
+  - Hull
   layers:
   - Default
   - TransparentFX

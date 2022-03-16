@@ -6,8 +6,10 @@ public class HullMovement : MonoBehaviour {
     [SerializeField] Rigidbody hull;
     [SerializeField] bool leftPaddle;
     [SerializeField] GameObject player;
+    [SerializeField] int velocityMultiplier = 30;
 
-    private const int VELOCITY_MULTIPLIER = 30;
+    public const int VELOCITY_MULTIPLIER = 30;
+    public const int HUNTER_VELOCITY_MULTIPLIER = 60;
     private const float TURN_COEFFIECENT = 0.10f;
     private const float ELEVATION_COEFFIECENT = 0.1f;
     private const float WATER_DRAG = 0.5f;
@@ -17,6 +19,10 @@ public class HullMovement : MonoBehaviour {
 
     private float oldX;  
     private float velocity;
+
+    public void setVelocityMultiplier(int multiplier) {
+        velocityMultiplier = multiplier;
+    }
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.tag == "Water") {
@@ -34,7 +40,7 @@ public class HullMovement : MonoBehaviour {
     }
 
     private void OnTriggerStay(Collider collider) {
-        velocity = (oldX - player.transform.InverseTransformPoint(transform.position).x) * VELOCITY_MULTIPLIER;
+        velocity = (oldX - player.transform.InverseTransformPoint(transform.position).x) * velocityMultiplier;
         oldX = player.transform.InverseTransformPoint(transform.position).x;
 
         if (collider.gameObject.tag == "Water") {

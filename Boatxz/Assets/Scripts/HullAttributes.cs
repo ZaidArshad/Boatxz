@@ -5,15 +5,29 @@ using UnityEngine.InputSystem;
 
 public class HullAttributes : MonoBehaviour {
     [SerializeField] GameObject torpedo;
+    [SerializeField] Material hunterMaterial;
     private PlayerDetector lastCheckpoint;
     public Transform startingPosition;
     private int playerNumber;
     private float torpedoCooldown = 1;
 
+    private Vector3 HUNTER_SCALE = new Vector3(6.90999985f*2,0.529999971f*2,2f*2); 
+
     private void Start() {
         playerNumber = MultiplayerManager.Instance.join(gameObject);
         startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
         goToOriginalStart();
+    }
+
+    public void becomeHunter() {
+        // FIX THIS LATER
+        GameObject text = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject;
+        Vector3 pos = text.transform.GetComponent<RectTransform>().anchoredPosition3D;
+        text.transform.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x, pos.y, 160);
+
+        gameObject.GetComponent<HullAttributes>().setVelocityMultiplier(HullMovement.HUNTER_VELOCITY_MULTIPLIER);
+        gameObject.transform.localScale = HUNTER_SCALE;
+        gameObject.GetComponent<Renderer>().material = hunterMaterial;
     }
 
     private void OnCollisionEnter(Collision collider) {
@@ -25,6 +39,11 @@ public class HullAttributes : MonoBehaviour {
             Vector3 direction = transform.position-collider.transform.position;
             hull.AddForceAtPosition(direction.normalized*1000, collider.transform.position);
             Destroy(collider.gameObject);
+        }
+        if (collider.transform.tag == "Hull") {
+            if (playerNumber == 0 && MultiplayerManager.Instance.gameMode == GameMode.BoatHunt) {
+                MultiplayerManager.Instance.leave(collider.gameObject.GetComponent<HullAttributes>().getPlayerNumber());
+            }
         }
     }
 
@@ -52,6 +71,13 @@ public class HullAttributes : MonoBehaviour {
         else {
             goToOriginalStart();
         }
+    }
+
+    public void setVelocityMultiplier(int multiplier) {
+        Transform leftPaddle = transform.GetChild(0).GetChild(1).GetChild(1);
+        Transform rightPaddle = transform.GetChild(0).GetChild(2).GetChild(1);
+        leftPaddle.GetComponent<HullMovement>().setVelocityMultiplier(multiplier);
+        rightPaddle.GetComponent<HullMovement>().setVelocityMultiplier(multiplier);
     }
 
     private void Update() {

@@ -195,6 +195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 318013629832912032, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.3499756
+      objectReference: {fileID: 0}
     - target: {fileID: 2083577389278837680, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -250,6 +254,14 @@ PrefabInstance:
     - target: {fileID: 2083577389468000419, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_FontData.m_AlignByGeometry
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577389656987807, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577389678361029, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3137028724434437516, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Pivot.x

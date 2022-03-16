@@ -8,6 +8,7 @@ public class MultiplayerManager : MonoBehaviour {
     [SerializeField] Camera startingCam;
     [SerializeField] Transform[] startingSpot = new Transform[4];
     public GameMode gameMode;
+    public int numOfPlayers = 0;
     
     public static MultiplayerManager Instance;
     GameObject[] joinedPlayers = new GameObject[4];
@@ -37,7 +38,11 @@ public class MultiplayerManager : MonoBehaviour {
             for (int i = 0; i < joinedPlayers.Length; i++) {
                 if (joinedPlayers[i] == player) return i;
                 if (joinedPlayers[i] == null) {
+                    numOfPlayers++;
                     joinedPlayers[i] = player;
+                    if (i == 0 && gameMode == GameMode.BoatHunt) {
+                        player.GetComponent<HullAttributes>().becomeHunter();
+                    }
                     return i;
                 }
             }
@@ -48,6 +53,7 @@ public class MultiplayerManager : MonoBehaviour {
     public void leave(int playerNumber) {
         Destroy(joinedPlayers[playerNumber]);
         joinedPlayers[playerNumber] = null;
+        numOfPlayers--;
     }
 
     public bool isGameStarted() {
