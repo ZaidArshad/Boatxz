@@ -14,12 +14,14 @@ public class MultiplayerManager : MonoBehaviour {
     
     public static MultiplayerManager Instance;
     GameObject[] joinedPlayers = new GameObject[4];
-    bool gameStarted = false;
+    private bool gameStarted = false;
+    private bool gameFinished = false;
     private const int STARTING_OFFSET = -20;
 
     private void Awake() {
         if (Instance == null) {
             Instance = this;
+            if (gameMode == GameMode.Lobby) startGame();
         }
     }
 
@@ -28,10 +30,12 @@ public class MultiplayerManager : MonoBehaviour {
     }
 
     public void startGame() {
-        for (int i = 0; i < 2; i++) {
-            if (joinedPlayers[i] == null) return;
+        if (gameMode != GameMode.Speedrun) {
+            for (int i = 0; i < 2; i++) {
+                if (joinedPlayers[i] == null) return;
+            }
         }
-        Destroy(startingCam);
+        if (startingCam != null) Destroy(startingCam);
         gameStarted = true;
     }
 
@@ -53,10 +57,29 @@ public class MultiplayerManager : MonoBehaviour {
         return -1;
     }
 
+    public void finishGame() {
+        Debug.Log("game finished");
+        gameFinished = true;
+    }
+
+    public bool isGameFinished() {
+        return gameFinished;
+    }
+
     public void leave(int playerNumber) {
         Destroy(joinedPlayers[playerNumber]);
         joinedPlayers[playerNumber] = null;
         numOfPlayers--;
+        if (numOfPlayers < 2 && isGameStarted()) finishGame();
+    }
+
+
+    public void singlePlayer() {
+        if (gameMode == GameMode.Speedrun || gameMode == GameMode.Lobby) startGame();
+    }
+
+    public bool isSinglePlayer() {
+        return (gameMode == GameMode.Speedrun || gameMode == GameMode.Lobby);
     }
 
     public bool isGameStarted() {

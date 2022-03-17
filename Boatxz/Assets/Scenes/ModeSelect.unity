@@ -560,7 +560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471561452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1451887131}
@@ -855,7 +855,13 @@ MonoBehaviour:
   startingCam: {fileID: 0}
   startingSpot:
   - {fileID: 1471561453}
+  materials:
+  - {fileID: 2100000, guid: 7c78e3c94934f0c48aa2e8d88c2d3e97, type: 2}
+  - {fileID: 2100000, guid: be87a41689790724c93c1fd1b175edaf, type: 2}
+  - {fileID: 2100000, guid: 66814b080a91acd41b9caa246dcc12f4, type: 2}
+  - {fileID: 2100000, guid: c622859beccb2de4aa4b2260adb0f3c5, type: 2}
   gameMode: 0
+  numOfPlayers: 0
 --- !u!114 &1897059903
 MonoBehaviour:
   m_ObjectHideFlags: 0

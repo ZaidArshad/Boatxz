@@ -63,6 +63,7 @@ public class PlayerDetector : MonoBehaviour {
                 nextCheckpoint.setCanPass(true);
             }
             else {
+                MultiplayerManager.Instance.finishGame();
                 timer.Stop();
             }
         }
@@ -74,6 +75,7 @@ public class PlayerDetector : MonoBehaviour {
             collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(this);
             if (nextCheckpoint == null) {
                 UnityEngine.Debug.Log(collider.transform.parent.GetComponent<HullAttributes>().getPlayerNumber());
+                MultiplayerManager.Instance.finishGame();
             }
         }
     }

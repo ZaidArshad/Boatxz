@@ -17,6 +17,7 @@ public class HullAttributes : MonoBehaviour {
         playerNumber = MultiplayerManager.Instance.join(gameObject);
         startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
         goToOriginalStart();
+        MultiplayerManager.Instance.singlePlayer();
     }
 
     public void becomeHunter() {
@@ -87,7 +88,12 @@ public class HullAttributes : MonoBehaviour {
 
     public void OnB(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (!MultiplayerManager.Instance.isGameStarted()) MultiplayerManager.Instance.leave(playerNumber);
+            if (MultiplayerManager.Instance.isGameFinished()) {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
+            else if (!MultiplayerManager.Instance.isGameStarted() && !MultiplayerManager.Instance.isSinglePlayer()) {
+                MultiplayerManager.Instance.leave(playerNumber);
+            }
         }
     }
 
