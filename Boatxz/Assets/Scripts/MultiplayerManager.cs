@@ -7,6 +7,8 @@ public enum GameMode {Lobby, Speedrun, MultiplayerRace, MultiplayerBattle, BoatH
 public class MultiplayerManager : MonoBehaviour {
     [SerializeField] Camera startingCam;
     [SerializeField] Transform[] startingSpot = new Transform[4];
+    [SerializeField] Material[] materials = new Material[4];
+
     public GameMode gameMode;
     public int numOfPlayers = 0;
     
@@ -40,6 +42,7 @@ public class MultiplayerManager : MonoBehaviour {
                 if (joinedPlayers[i] == null) {
                     numOfPlayers++;
                     joinedPlayers[i] = player;
+                    player.GetComponent<Renderer>().material = materials[i];
                     if (i == 0 && gameMode == GameMode.BoatHunt) {
                         player.GetComponent<HullAttributes>().becomeHunter();
                     }

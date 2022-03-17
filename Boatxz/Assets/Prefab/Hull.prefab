@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torpedo: {fileID: 3753858990710599237, guid: 98a5fffac5a305e4c97821deac5f7ae7, type: 3}
-  hunterMaterial: {fileID: 2100000, guid: 9a34e4f25c1269644a3226d2d5265525, type: 2}
+  hunterMaterial: {fileID: 2100000, guid: 4a51efab0a9ad0e41a119810146e0681, type: 2}
   startingPosition: {fileID: 0}
 --- !u!114 &2083577389278837685
 MonoBehaviour:

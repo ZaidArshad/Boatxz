@@ -523,7 +523,13 @@ MonoBehaviour:
   - {fileID: 1490453888}
   - {fileID: 1347829940}
   - {fileID: 1650529722}
+  materials:
+  - {fileID: 2100000, guid: 7c78e3c94934f0c48aa2e8d88c2d3e97, type: 2}
+  - {fileID: 2100000, guid: be87a41689790724c93c1fd1b175edaf, type: 2}
+  - {fileID: 2100000, guid: 66814b080a91acd41b9caa246dcc12f4, type: 2}
+  - {fileID: 2100000, guid: c622859beccb2de4aa4b2260adb0f3c5, type: 2}
   gameMode: 3
+  numOfPlayers: 0
 --- !u!4 &1228743681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8767144793960350883, guid: f357b91a96e47b14b96ca663cee3b67a, type: 3}
