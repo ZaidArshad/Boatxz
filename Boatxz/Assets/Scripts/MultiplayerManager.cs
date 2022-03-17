@@ -47,9 +47,15 @@ public class MultiplayerManager : MonoBehaviour {
                     numOfPlayers++;
                     joinedPlayers[i] = player;
                     player.GetComponent<Renderer>().material = materials[i];
-                    if (i == 0 && gameMode == GameMode.BoatHunt) {
-                        player.GetComponent<HullAttributes>().becomeHunter();
+                    if (gameMode == GameMode.BoatHunt) {
+                        if (i == 0) {
+                            player.GetComponent<HullAttributes>().becomeHunter();
+                        }
+                        else {
+                            player.GetComponent<HullAttributes>().becomeHunted();
+                        }
                     }
+                    
                     return i;
                 }
             }
@@ -84,5 +90,23 @@ public class MultiplayerManager : MonoBehaviour {
 
     public bool isGameStarted() {
         return gameStarted;
+    }
+
+    public void reset(int playerNum) {
+        PlayerDetector lastCheckpoint = joinedPlayers[playerNum].GetComponent<HullAttributes>().getLastCheckpoint();
+        if (gameMode == GameMode.BoatHunt) {
+            joinedPlayers[playerNum].GetComponent<HullAttributes>().goToPosition(joinedPlayers[0].GetComponent<HullAttributes>().startingPosition);
+        }
+        else if (lastCheckpoint != null) {
+            joinedPlayers[playerNum].transform.eulerAngles = new Vector3(
+                lastCheckpoint.transform.eulerAngles.x,
+                lastCheckpoint.transform.eulerAngles.y-90,
+                lastCheckpoint.transform.eulerAngles.z);
+            joinedPlayers[playerNum].transform.position = lastCheckpoint.transform.position;
+            joinedPlayers[playerNum].GetComponent<HullAttributes>().stopForces();
+        }
+        else {
+            joinedPlayers[playerNum].GetComponent<HullAttributes>().goToOriginalStart();
+        }
     }
 }

@@ -21,8 +21,12 @@ public class HullAttributes : MonoBehaviour {
     }
 
     public void becomeHunter() {
-        setVelocityMultiplier(HullMovement.HUNTER_VELOCITY_MULTIPLIER);
+        //setVelocityMultiplier(HullMovement.HUNTER_VELOCITY_MULTIPLIER);
         gameObject.GetComponent<Renderer>().material = hunterMaterial;
+    }
+
+    public void becomeHunted() {
+        setVelocityMultiplier(20);
     }
 
     private void OnCollisionEnter(Collision collider) {
@@ -54,20 +58,6 @@ public class HullAttributes : MonoBehaviour {
         return playerNumber;
     }
 
-    public void reset() {
-        if (lastCheckpoint != null) {
-            transform.eulerAngles = new Vector3(
-                lastCheckpoint.transform.eulerAngles.x,
-                lastCheckpoint.transform.eulerAngles.y-90,
-                lastCheckpoint.transform.eulerAngles.z);
-            transform.position = lastCheckpoint.transform.position;
-            stopForces();
-        }
-        else {
-            goToOriginalStart();
-        }
-    }
-
     public void setVelocityMultiplier(int multiplier) {
         Transform leftPaddle = transform.GetChild(0).GetChild(1).GetChild(1);
         Transform rightPaddle = transform.GetChild(0).GetChild(2).GetChild(1);
@@ -81,8 +71,9 @@ public class HullAttributes : MonoBehaviour {
 
     public void OnRB(InputAction.CallbackContext context) {
         if (context.performed) {
-            if ((MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle && MultiplayerManager.Instance.gameMode != GameMode.BoatHunt)
-                || (MultiplayerManager.Instance.gameMode == GameMode.BoatHunt && playerNumber == 0)) reset();
+            if (MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle) {
+                MultiplayerManager.Instance.reset(playerNumber);
+            }
         }
     }
 
@@ -120,14 +111,18 @@ public class HullAttributes : MonoBehaviour {
         }
     }
 
-    private void stopForces() {
+    public void stopForces() {
         transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
-    private void goToOriginalStart() {
-        transform.position = startingPosition.position;
-        transform.rotation = startingPosition.rotation;
+    public void goToOriginalStart() {
+        goToPosition(startingPosition);
+    }
+
+    public void goToPosition(Transform pos) {
+        transform.position = pos.position;
+        transform.rotation = pos.rotation;
         stopForces();
     }
 }
