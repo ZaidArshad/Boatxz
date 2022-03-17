@@ -20,13 +20,7 @@ public class HullAttributes : MonoBehaviour {
     }
 
     public void becomeHunter() {
-        // FIX THIS LATER
-        GameObject text = transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject;
-        Vector3 pos = text.transform.GetComponent<RectTransform>().anchoredPosition3D;
-        text.transform.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x, pos.y, 160);
-
-        gameObject.GetComponent<HullAttributes>().setVelocityMultiplier(HullMovement.HUNTER_VELOCITY_MULTIPLIER);
-        gameObject.transform.localScale = HUNTER_SCALE;
+        setVelocityMultiplier(HullMovement.HUNTER_VELOCITY_MULTIPLIER);
         gameObject.GetComponent<Renderer>().material = hunterMaterial;
     }
 
@@ -86,7 +80,8 @@ public class HullAttributes : MonoBehaviour {
 
     public void OnRB(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle) reset();
+            if ((MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle && MultiplayerManager.Instance.gameMode != GameMode.BoatHunt)
+                || (MultiplayerManager.Instance.gameMode == GameMode.BoatHunt && playerNumber == 0)) reset();
         }
     }
 
