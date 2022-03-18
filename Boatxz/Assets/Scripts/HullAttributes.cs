@@ -11,7 +11,8 @@ public class HullAttributes : MonoBehaviour {
     private int playerNumber;
     private float torpedoCooldown = 1;
 
-    private Vector3 HUNTER_SCALE = new Vector3(6.90999985f*2,0.529999971f*2,2f*2); 
+    private Vector3 HUNTER_SCALE = new Vector3(6.90999985f*2,0.529999971f*2,2f*2);
+    private const int RIGHTING_MULTIPLIER = 10;
 
     private void Start() {
         playerNumber = MultiplayerManager.Instance.join(gameObject);
@@ -21,7 +22,6 @@ public class HullAttributes : MonoBehaviour {
     }
 
     public void becomeHunter() {
-        //setVelocityMultiplier(HullMovement.HUNTER_VELOCITY_MULTIPLIER);
         gameObject.GetComponent<Renderer>().material = hunterMaterial;
     }
 
@@ -67,6 +67,15 @@ public class HullAttributes : MonoBehaviour {
 
     private void Update() {
         torpedoCooldown -= Time.deltaTime;
+        selfRight();
+    }
+
+    private void selfRight() {
+        if ((transform.eulerAngles.x > 0.1 || transform.eulerAngles.z > 0.1)) {
+            Quaternion rotation = transform.rotation;
+            rotation.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime*RIGHTING_MULTIPLIER);
+        }
     }
 
     public void OnRB(InputAction.CallbackContext context) {

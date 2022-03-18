@@ -551,6 +551,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4e2e233a-07ec-4b83-b044-5823b23c6ae1
     m_ActionName: Gamepad/RT[/XInputControllerWindows1/rightTrigger,/XInputControllerWindows/rightTrigger,/XInputControllerWindows2/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2083577389278837683}
+        m_TargetAssemblyTypeName: HullAttributes, Assembly-CSharp
+        m_MethodName: OnLT
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c6e9f7a8-5751-4b96-b347-2de645a158b4
+    m_ActionName: Gamepad/LT[/XInputControllerWindows/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gamepad
