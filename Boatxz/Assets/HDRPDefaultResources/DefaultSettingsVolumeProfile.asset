@@ -98,7 +98,7 @@ MonoBehaviour:
     max: 1
   maxDistance:
     m_OverrideState: 0
-    m_Value: 50
+    m_Value: 1000
     min: 0
   minDistance:
     m_OverrideState: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.178
     min: 0
     max: 1
   scatter:
@@ -310,7 +310,7 @@ MonoBehaviour:
     showEyeDropper: 1
   dirtTexture:
     m_OverrideState: 0
-    m_Value: {fileID: 0}
+    m_Value: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   meteringMode:
     m_OverrideState: 0
     m_Value: 2
@@ -374,17 +374,17 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   fixedExposure:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 10
   compensation:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -0.02
   limitMin:
     m_OverrideState: 0
-    m_Value: -10
+    m_Value: 4.5
   limitMax:
     m_OverrideState: 0
-    m_Value: 10
+    m_Value: 9.652739
   curveMap:
     m_OverrideState: 0
     m_Value:
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   maxShadowDistance:
     m_OverrideState: 1
-    m_Value: 150
+    m_Value: 1000
     min: 0
   directionalTransmissionMultiplier:
     m_OverrideState: 0
