@@ -35,7 +35,10 @@ public class MultiplayerManager : MonoBehaviour {
                 if (joinedPlayers[i] == null) return;
             }
         }
-        if (startingCam != null) Destroy(startingCam);
+        if (startingCam != null) {
+            startingCam.transform.Rotate(0, 90, 0, Space.Self);
+            Destroy(startingCam);
+        }
         gameStarted = true;
     }
 
@@ -74,9 +77,14 @@ public class MultiplayerManager : MonoBehaviour {
 
     public void leave(int playerNumber) {
         Destroy(joinedPlayers[playerNumber]);
+        if (joinedPlayers[playerNumber] != null) {
+            numOfPlayers--;
+            if (numOfPlayers < 2 && isGameStarted()) {
+                Debug.Log(numOfPlayers);
+                finishGame();
+            }
+        }
         joinedPlayers[playerNumber] = null;
-        numOfPlayers--;
-        if (numOfPlayers < 2 && isGameStarted()) finishGame();
     }
 
 
