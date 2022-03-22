@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public enum GameMode {Lobby, Speedrun, MultiplayerRace, MultiplayerBattle, BoatHunt};
 public class MultiplayerManager : MonoBehaviour {
-    [SerializeField] Camera startingCam;
+    [SerializeField] GameObject startingCam;
     [SerializeField] Transform[] startingSpot = new Transform[4];
     [SerializeField] Material[] materials = new Material[4];
+    [SerializeField] GameObject screenCanvas;
 
     public GameMode gameMode;
     public int numOfPlayers = 0;
@@ -36,7 +38,7 @@ public class MultiplayerManager : MonoBehaviour {
             }
         }
         if (startingCam != null) {
-            startingCam.transform.Rotate(0, 90, 0, Space.Self);
+            if (numOfPlayers == 3) screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
             Destroy(startingCam);
         }
         gameStarted = true;
