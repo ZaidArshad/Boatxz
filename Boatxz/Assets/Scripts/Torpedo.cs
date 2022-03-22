@@ -8,7 +8,7 @@ public class Torpedo : MonoBehaviour {
     float time = 0;
 
     private void Update() {
-        missle.AddRelativeForce(new Vector3 (1, 0, 0));
+        missle.AddRelativeForce(new Vector3 (5, 0, 0));
         time += Time.deltaTime;
         if (time > 5) Destroy(gameObject);
     }

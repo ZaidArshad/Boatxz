@@ -68,8 +68,16 @@ public class MultiplayerManager : MonoBehaviour {
         return -1;
     }
 
+    private GameObject getRemainingPlayer() {
+        for (int i = 0; i < joinedPlayers.Length; i++) {
+            if (joinedPlayers[i] != null) {
+                return joinedPlayers[i];
+            }
+        }
+        return null;
+    }
+
     public void finishGame() {
-        Debug.Log("game finished");
         gameFinished = true;
     }
 
@@ -81,12 +89,12 @@ public class MultiplayerManager : MonoBehaviour {
         Destroy(joinedPlayers[playerNumber]);
         if (joinedPlayers[playerNumber] != null) {
             numOfPlayers--;
+            joinedPlayers[playerNumber] = null;
             if (numOfPlayers < 2 && isGameStarted()) {
-                Debug.Log(numOfPlayers);
+                if (gameMode == GameMode.MultiplayerBattle) getRemainingPlayer().GetComponent<HullAttributes>().showPrompt("Winner");
                 finishGame();
             }
         }
-        joinedPlayers[playerNumber] = null;
     }
 
 

@@ -63,18 +63,22 @@ public class PlayerDetector : MonoBehaviour {
                 nextCheckpoint.setCanPass(true);
             }
             else {
+                collider.transform.parent.GetComponent<HullAttributes>().showPrompt("Press B to Return to Lobby");
                 MultiplayerManager.Instance.finishGame();
                 timer.Stop();
             }
         }
     }
 
+    private int place = 1;
+
     private void race(Collider collider) {
         PlayerDetector lastCheckpoint = collider.transform.parent.GetComponent<HullAttributes>().getLastCheckpoint();
         if (lastCheckpoint == null || lastCheckpoint.nextCheckpoint == this) {
             collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(this);
             if (nextCheckpoint == null) {
-                UnityEngine.Debug.Log(collider.transform.parent.GetComponent<HullAttributes>().getPlayerNumber());
+                collider.transform.parent.GetComponent<HullAttributes>().showPrompt("Position: "+ place);
+                place++;
                 MultiplayerManager.Instance.finishGame();
             }
         }

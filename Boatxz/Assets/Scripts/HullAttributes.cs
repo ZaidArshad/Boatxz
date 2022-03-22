@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class HullAttributes : MonoBehaviour {
     [SerializeField] GameObject torpedo;
     [SerializeField] Material hunterMaterial;
+    [SerializeField] Text prompt;
+
     private PlayerDetector lastCheckpoint;
     public Transform startingPosition;
     private int playerNumber;
@@ -23,6 +26,11 @@ public class HullAttributes : MonoBehaviour {
 
     public void becomeHunter() {
         gameObject.GetComponent<Renderer>().material = hunterMaterial;
+    }
+
+    public void showPrompt(string msg) {
+        prompt.text = msg;
+        prompt.color = new Color(255, 255, 255, 255);
     }
 
     public void becomeHunted() {
