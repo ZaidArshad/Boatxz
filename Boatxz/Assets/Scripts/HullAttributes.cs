@@ -76,6 +76,10 @@ public class HullAttributes : MonoBehaviour {
     private void Update() {
         torpedoCooldown -= Time.deltaTime;
         selfRight();
+        if (transform.position.y < -10 && !MultiplayerManager.Instance.isFightingMode()) {
+            reset();
+        }
+        
     }
 
     private void selfRight() {
@@ -88,8 +92,8 @@ public class HullAttributes : MonoBehaviour {
 
     public void OnRB(InputAction.CallbackContext context) {
         if (context.performed) {
-            if (MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle) {
-                MultiplayerManager.Instance.reset(playerNumber);
+            if (!MultiplayerManager.Instance.isFightingMode()) {
+                reset();
             }
         }
     }
@@ -141,5 +145,22 @@ public class HullAttributes : MonoBehaviour {
         transform.position = pos.position;
         transform.rotation = pos.rotation;
         stopForces();
+    }
+
+    public void reset() {
+        if (MultiplayerManager.Instance.gameMode == GameMode.BoatHunt) {
+            goToPosition(startingPosition);
+        }
+        else if (lastCheckpoint != null) {
+            transform.eulerAngles = new Vector3(
+                lastCheckpoint.transform.eulerAngles.x,
+                lastCheckpoint.transform.eulerAngles.y-90,
+                lastCheckpoint.transform.eulerAngles.z);
+            transform.position = lastCheckpoint.transform.position;
+            stopForces();
+        }
+        else {
+            goToOriginalStart();
+        }
     }
 }

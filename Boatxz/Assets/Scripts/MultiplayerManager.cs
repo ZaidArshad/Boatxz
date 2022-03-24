@@ -23,8 +23,11 @@ public class MultiplayerManager : MonoBehaviour {
     private void Awake() {
         if (Instance == null) {
             Instance = this;
-            if (gameMode == GameMode.Lobby) startGame();
         }
+    }
+
+    private void Start() {
+        if (gameMode == GameMode.Lobby) startGame();
     }
 
     public Transform getStartingPosition(int playerNumber) {
@@ -32,19 +35,20 @@ public class MultiplayerManager : MonoBehaviour {
     }
 
     public void startGame() {
-        if (gameMode != GameMode.Speedrun) {
+        if (gameMode != GameMode.Speedrun && gameMode != GameMode.Lobby) {
             for (int i = 0; i < 2; i++) {
                 if (joinedPlayers[i] == null) return;
             }
         }
         if (startingCam != null) {
-            if (numOfPlayers == 3) screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
+            displayP4Block();
             Destroy(startingCam);
         }
         gameStarted = true;
     }
 
     public int join(GameObject player) {
+        if (isSinglePlayer()) return 0;
         if (!gameStarted) {
             for (int i = 0; i < joinedPlayers.Length; i++) {
                 if (joinedPlayers[i] == player) return i;
@@ -81,6 +85,13 @@ public class MultiplayerManager : MonoBehaviour {
         gameFinished = true;
     }
 
+    private void displayP4Block() {
+        if (screenCanvas != null) {
+            if (numOfPlayers == 3) screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
+            else screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
+        }
+    }
+
     public bool isGameFinished() {
         return gameFinished;
     }
@@ -88,6 +99,7 @@ public class MultiplayerManager : MonoBehaviour {
     public void leave(int playerNumber) {
         Destroy(joinedPlayers[playerNumber]);
         if (joinedPlayers[playerNumber] != null) {
+            displayP4Block();
             numOfPlayers--;
             joinedPlayers[playerNumber] = null;
             if (numOfPlayers < 2 && isGameStarted()) {
@@ -106,25 +118,15 @@ public class MultiplayerManager : MonoBehaviour {
         return (gameMode == GameMode.Speedrun || gameMode == GameMode.Lobby);
     }
 
-    public bool isGameStarted() {
-        return gameStarted;
+    public bool isRaceMode() {
+        return (gameMode == GameMode.Speedrun || gameMode == GameMode.MultiplayerRace);
     }
 
-    public void reset(int playerNum) {
-        PlayerDetector lastCheckpoint = joinedPlayers[playerNum].GetComponent<HullAttributes>().getLastCheckpoint();
-        if (gameMode == GameMode.BoatHunt) {
-            joinedPlayers[playerNum].GetComponent<HullAttributes>().goToPosition(joinedPlayers[0].GetComponent<HullAttributes>().startingPosition);
-        }
-        else if (lastCheckpoint != null) {
-            joinedPlayers[playerNum].transform.eulerAngles = new Vector3(
-                lastCheckpoint.transform.eulerAngles.x,
-                lastCheckpoint.transform.eulerAngles.y-90,
-                lastCheckpoint.transform.eulerAngles.z);
-            joinedPlayers[playerNum].transform.position = lastCheckpoint.transform.position;
-            joinedPlayers[playerNum].GetComponent<HullAttributes>().stopForces();
-        }
-        else {
-            joinedPlayers[playerNum].GetComponent<HullAttributes>().goToOriginalStart();
-        }
+    public bool isFightingMode() {
+        return (gameMode == GameMode.MultiplayerBattle || gameMode == GameMode.BoatHunt);
+    }
+
+    public bool isGameStarted() {
+        return gameStarted;
     }
 }

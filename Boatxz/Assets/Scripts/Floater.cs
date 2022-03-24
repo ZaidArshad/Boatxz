@@ -10,7 +10,7 @@ public class Floater : MonoBehaviour {
     private bool onWater = true;
 
     private void FixedUpdate() {
-        if (MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle || onWater) {
+        if ((MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle && MultiplayerManager.Instance.gameMode != GameMode.Lobby) || onWater) {
             float displacementMultiplier = Mathf.Clamp01((-transform.position.y) / depthBeforeSubmerged) * displacementAmount;
             hull.AddForce(new Vector3(0f, Mathf.Abs(Physics.gravity.y)* displacementMultiplier, 0f), ForceMode.Acceleration);
         }

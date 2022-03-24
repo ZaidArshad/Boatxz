@@ -44,7 +44,12 @@ public class HullMovement : MonoBehaviour {
         oldX = player.transform.InverseTransformPoint(transform.position).x;
 
         if (collider.gameObject.tag == "Water") {
+            moveHull();
+        }
+    }
 
+    private void moveHull() {
+        if (MultiplayerManager.Instance.isGameStarted()) {
             hull.AddRelativeForce(new Vector3(velocity, velocity*ELEVATION_COEFFIECENT, 0f), ForceMode.Acceleration);
             if (leftPaddle) {
                 hull.AddTorque(0f, velocity*TURN_COEFFIECENT, 0, ForceMode.Acceleration);
