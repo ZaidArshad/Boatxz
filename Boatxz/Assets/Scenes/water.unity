@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCam: {fileID: 0}
   startingSpot:
-  - {fileID: 1989805058}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: be87a41689790724c93c1fd1b175edaf, type: 2}
   - {fileID: 2100000, guid: 66814b080a91acd41b9caa246dcc12f4, type: 2}
   - {fileID: 2100000, guid: c622859beccb2de4aa4b2260adb0f3c5, type: 2}
+  screenCanvas: {fileID: 0}
   gameMode: 2
   numOfPlayers: 0
 --- !u!114 &510274139
@@ -231,6 +232,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 318013629832912032, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2083577388653775444, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -238,6 +243,18 @@ PrefabInstance:
     - target: {fileID: 2083577388825733393, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577388825733396, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577388825733397, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 2083577388825733398, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2083577389006024304, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
@@ -255,6 +272,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2083577389414747633, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2083577389431116373, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -267,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2083577389656987807, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2083577389678361031, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -278,6 +303,14 @@ PrefabInstance:
     - target: {fileID: 2083577390440130454, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577390440130455, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815701683020733931, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3137028724434437516, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Pivot.x
@@ -362,6 +395,10 @@ PrefabInstance:
     - target: {fileID: 3137028724434437516, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292339666883013862, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7171113818736723265, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
@@ -585,11 +622,6 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
---- !u!224 &1989805058 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3137028724434437516, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
-  m_PrefabInstance: {fileID: 558969286}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6235795132303591649
 PrefabInstance:
   m_ObjectHideFlags: 0
