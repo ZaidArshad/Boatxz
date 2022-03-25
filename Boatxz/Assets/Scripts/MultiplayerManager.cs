@@ -99,13 +99,13 @@ public class MultiplayerManager : MonoBehaviour {
     public void leave(int playerNumber) {
         Destroy(joinedPlayers[playerNumber]);
         if (joinedPlayers[playerNumber] != null) {
-            displayP4Block();
             numOfPlayers--;
             joinedPlayers[playerNumber] = null;
             if (numOfPlayers < 2 && isGameStarted()) {
                 if (gameMode == GameMode.MultiplayerBattle) getRemainingPlayer().GetComponent<HullAttributes>().showPrompt("Winner");
                 finishGame();
             }
+            displayP4Block();
         }
     }
 
