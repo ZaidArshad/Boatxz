@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls the torpedo a player shoots
+/// To be applied to a torpedo object
+/// </summary>
 public class Torpedo : MonoBehaviour {
     [SerializeField] Rigidbody missle;
 

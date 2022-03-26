@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Controls the rotations and positions of the paddles
+/// To be applied to the hull
+/// </summary>
 public class PaddleMovement : MonoBehaviour {
     [SerializeField] GameObject leftPaddle, rightPaddle;
     [SerializeField] float range = 40;

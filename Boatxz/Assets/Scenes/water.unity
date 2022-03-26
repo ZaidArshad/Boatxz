@@ -165,7 +165,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 66814b080a91acd41b9caa246dcc12f4, type: 2}
   - {fileID: 2100000, guid: c622859beccb2de4aa4b2260adb0f3c5, type: 2}
   screenCanvas: {fileID: 0}
-  gameMode: 2
+  gameMode: 0
   numOfPlayers: 0
 --- !u!114 &510274139
 MonoBehaviour:
@@ -232,6 +232,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1241402782268255296, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2083577388653775444, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Layer
       value: 6

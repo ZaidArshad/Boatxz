@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls the forces applied to the hull to turn and move forward / backwards
+/// Applied to the paddle tip
+/// </summary>
 public class HullMovement : MonoBehaviour {
     [SerializeField] Rigidbody hull;
     [SerializeField] bool leftPaddle;

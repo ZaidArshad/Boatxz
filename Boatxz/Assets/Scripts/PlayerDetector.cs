@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
 
+/// <summary>
+/// Controls actions when a player enters a checkpoint
+/// To be applied on a checkpoint's hitbox
+/// </summary>
 public class PlayerDetector : MonoBehaviour {
     [SerializeField] GameObject topBar;
     [SerializeField] Material redMaterial;
@@ -11,7 +15,7 @@ public class PlayerDetector : MonoBehaviour {
 
     private bool isPassed = false;
     private bool canPass = false;
-    public Stopwatch timer;
+    private Stopwatch timer { set; get; }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider collider) {
@@ -35,6 +39,10 @@ public class PlayerDetector : MonoBehaviour {
     public void setCanPass(bool pass) {
         canPass = pass;
         topBar.GetComponent<Renderer>().material = greenMaterial;
+    }
+
+    public void setTimer(Stopwatch stopWatch) {
+        timer = stopWatch;
     }
 
     private void loadNewScene() {

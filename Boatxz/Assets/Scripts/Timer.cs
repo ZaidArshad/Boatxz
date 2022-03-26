@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controls the timer displayed on screen
+/// To be applied to a text object
+/// </summary>
 public class Timer : MonoBehaviour
 {
     private Text text;

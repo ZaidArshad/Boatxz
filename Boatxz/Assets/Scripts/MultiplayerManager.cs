@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Controls the different player attributes and game modes
+/// </summary>
 public enum GameMode {Lobby, Speedrun, MultiplayerRace, MultiplayerBattle, BoatHunt};
 public class MultiplayerManager : MonoBehaviour {
     [SerializeField] GameObject startingCam;
@@ -13,9 +16,9 @@ public class MultiplayerManager : MonoBehaviour {
 
     public GameMode gameMode;
     public int numOfPlayers = 0;
-    
     public static MultiplayerManager Instance;
-    GameObject[] joinedPlayers = new GameObject[4];
+    private GameObject[] joinedPlayers = new GameObject[4];
+
     private bool gameStarted = false;
     private bool gameFinished = false;
     private const int STARTING_OFFSET = -20;
@@ -35,7 +38,7 @@ public class MultiplayerManager : MonoBehaviour {
     }
 
     public void startGame() {
-        if (gameMode != GameMode.Speedrun && gameMode != GameMode.Lobby) {
+        if (!isSinglePlayer()) {
             for (int i = 0; i < 2; i++) {
                 if (joinedPlayers[i] == null) return;
             }
@@ -64,7 +67,6 @@ public class MultiplayerManager : MonoBehaviour {
                             player.GetComponent<HullAttributes>().becomeHunted();
                         }
                     }
-                    
                     return i;
                 }
             }
@@ -72,24 +74,8 @@ public class MultiplayerManager : MonoBehaviour {
         return -1;
     }
 
-    private GameObject getRemainingPlayer() {
-        for (int i = 0; i < joinedPlayers.Length; i++) {
-            if (joinedPlayers[i] != null) {
-                return joinedPlayers[i];
-            }
-        }
-        return null;
-    }
-
     public void finishGame() {
         gameFinished = true;
-    }
-
-    private void displayP4Block() {
-        if (screenCanvas != null) {
-            if (numOfPlayers == 3) screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
-            else screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
-        }
     }
 
     public bool isGameFinished() {
@@ -109,9 +95,8 @@ public class MultiplayerManager : MonoBehaviour {
         }
     }
 
-
     public void singlePlayer() {
-        if (gameMode == GameMode.Speedrun || gameMode == GameMode.Lobby) startGame();
+        if (isSinglePlayer()) startGame();
     }
 
     public bool isSinglePlayer() {
@@ -129,4 +114,21 @@ public class MultiplayerManager : MonoBehaviour {
     public bool isGameStarted() {
         return gameStarted;
     }
+
+    private GameObject getRemainingPlayer() {
+        for (int i = 0; i < joinedPlayers.Length; i++) {
+            if (joinedPlayers[i] != null) {
+                return joinedPlayers[i];
+            }
+        }
+        return null;
+    }
+
+    private void displayP4Block() {
+        if (screenCanvas != null) {
+            if (numOfPlayers == 3) screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 255);
+            else screenCanvas.transform.GetChild(0).GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
+        }
+    }
+
 }
