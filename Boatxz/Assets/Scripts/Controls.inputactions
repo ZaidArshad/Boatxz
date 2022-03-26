@@ -167,6 +167,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3594ec66-ec60-40d6-9d38-0a3c7a8dfb64",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "550f04e9-7e85-41e6-96d5-7999dcb81b76",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",

@@ -22,6 +22,7 @@ public class MultiplayerManager : MonoBehaviour {
     private bool gameStarted = false;
     private bool gameFinished = false;
     private const int STARTING_OFFSET = -20;
+    private PlayerInputManager playerInputManager;
 
     private void Awake() {
         if (Instance == null) {
@@ -31,6 +32,7 @@ public class MultiplayerManager : MonoBehaviour {
 
     private void Start() {
         if (gameMode == GameMode.Lobby) startGame();
+        playerInputManager = gameObject.GetComponent<PlayerInputManager>();
     }
 
     public Transform getStartingPosition(int playerNumber) {
@@ -47,6 +49,7 @@ public class MultiplayerManager : MonoBehaviour {
             displayP4Block();
             Destroy(startingCam);
         }
+        playerInputManager.DisableJoining();
         gameStarted = true;
     }
 
@@ -82,16 +85,64 @@ public class MultiplayerManager : MonoBehaviour {
         return gameFinished;
     }
 
+    /*
+    joinedPlayers[playerNumber].transform.GetChild(0).GetChild(0).GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
+    1 Player view
+    1: Rect(0, 0, 1, 1)
+
+    2 Player views
+    1: Rect(0, 0, 0.5, 1)
+    2: Rect(0.5, 0, 0.5, 1)
+    
+    4 Player views
+    1: Rect(0, 0.5, 0.5, 0.5)
+    2: Rect(0.5, 0.5, 0.5, 0.5)
+    3: Rect(0, 0, 0.5, 0.5)
+    4: Rect(0.5, 0, 0.5, 0.5)
+    */
+
+    private void refreshSplitScreen() {
+        GameObject[] alive = getAlivePlayers();
+        Vector2[] blockPivots = {new Vector2(1,0), new Vector2(0,0), new Vector2(1,1), new Vector2(0,1)};
+        if (numOfPlayers == 1) {
+            alive[0].transform.GetChild(0).GetChild(0).GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
+        }
+        if (numOfPlayers == 2) {
+            alive[0].transform.GetChild(0).GetChild(0).GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
+            alive[1].transform.GetChild(0).GetChild(0).GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
+        }
+        else if (numOfPlayers == 3) {
+            for (int i = 0; i < 4; i++) {
+                if (joinedPlayers[i] == null) {
+                    screenCanvas.transform.GetChild(0).GetComponent<RectTransform>().pivot = blockPivots[i];
+                }
+            }
+        }
+        displayP4Block();
+    }
+
+    private GameObject[] getAlivePlayers() {
+        GameObject[] alive = new GameObject[numOfPlayers];
+        int index = 0;
+        for (int i = 0; i < 4; i++) {
+            if (joinedPlayers[i] != null) {
+                alive[index] = joinedPlayers[i];
+                index++;
+            }
+        }
+        return alive;
+    }
+
     public void leave(int playerNumber) {
-        Destroy(joinedPlayers[playerNumber]);
         if (joinedPlayers[playerNumber] != null) {
+            Destroy(joinedPlayers[playerNumber]);
             numOfPlayers--;
             joinedPlayers[playerNumber] = null;
             if (numOfPlayers < 2 && isGameStarted()) {
                 if (gameMode == GameMode.MultiplayerBattle) getRemainingPlayer().GetComponent<HullAttributes>().showPrompt("Winner");
                 finishGame();
             }
-            displayP4Block();
+            refreshSplitScreen();
         }
     }
 
