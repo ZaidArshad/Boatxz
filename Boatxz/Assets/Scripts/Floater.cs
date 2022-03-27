@@ -11,7 +11,7 @@ public class Floater : MonoBehaviour {
     private const float DISPLACEMENT_AMOUNT = 6f;
     private bool onWater = true;
 
-    private void FixedUpdate() {
+    void FixedUpdate() {
         Rigidbody hull = transform.GetComponent<Rigidbody>();
         if ((MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle && MultiplayerManager.Instance.gameMode != GameMode.Lobby) || onWater) {
             float displacementMultiplier = Mathf.Clamp01((-transform.position.y) / DEPTH_BEFORE_SUBMERGED) * DISPLACEMENT_AMOUNT;
@@ -19,13 +19,13 @@ public class Floater : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider collider) {
+    void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.tag == "Water") {
             onWater = true;
         }
     }
 
-    private void OnTriggerExit(Collider collider) {
+    void OnTriggerExit(Collider collider) {
         if (collider.gameObject.tag == "Water") {
             onWater = false;
         }

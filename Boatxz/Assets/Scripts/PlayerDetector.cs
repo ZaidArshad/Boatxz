@@ -17,8 +17,7 @@ public class PlayerDetector : MonoBehaviour {
     private bool canPass = false;
     private Stopwatch timer { set; get; }
 
-    // Update is called once per frame
-    private void OnTriggerEnter(Collider collider) {
+    void OnTriggerEnter(Collider collider) {
         if (collider.tag == "Player") {
             if (MultiplayerManager.Instance.gameMode == GameMode.Lobby) {
                 loadNewScene();
@@ -66,7 +65,7 @@ public class PlayerDetector : MonoBehaviour {
             if (!timer.IsRunning) timer.Start();
             isPassed = true;
             topBar.GetComponent<Renderer>().material = redMaterial;
-            collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(this);
+            collider.transform.parent.GetComponent<HullAttributes>().lastCheckpoint = this;
             if (nextCheckpoint != null) {
                 nextCheckpoint.setCanPass(true);
             }
@@ -79,11 +78,10 @@ public class PlayerDetector : MonoBehaviour {
     }
 
     private int place = 1;
-
     private void race(Collider collider) {
-        PlayerDetector lastCheckpoint = collider.transform.parent.GetComponent<HullAttributes>().getLastCheckpoint();
+        PlayerDetector lastCheckpoint = collider.transform.parent.GetComponent<HullAttributes>().lastCheckpoint;
         if (lastCheckpoint == null || lastCheckpoint.nextCheckpoint == this) {
-            collider.transform.parent.GetComponent<HullAttributes>().setLastCheckpoint(this);
+            collider.transform.parent.GetComponent<HullAttributes>().lastCheckpoint = this;
             if (nextCheckpoint == null) {
                 collider.transform.parent.GetComponent<HullAttributes>().showPrompt("Position: "+ place);
                 place++;

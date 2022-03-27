@@ -10,7 +10,6 @@ public class HullMovement : MonoBehaviour {
     [SerializeField] Rigidbody hull;
     [SerializeField] bool leftPaddle;
     [SerializeField] GameObject player;
-    [SerializeField] int velocityMultiplier = 30;
 
     public const int VELOCITY_MULTIPLIER = 30;
     public const int HUNTER_VELOCITY_MULTIPLIER = 60;
@@ -23,12 +22,9 @@ public class HullMovement : MonoBehaviour {
 
     private float oldX;  
     private float velocity;
-
-    public void setVelocityMultiplier(int multiplier) {
-        velocityMultiplier = multiplier;
-    }
-
-    private void OnTriggerEnter(Collider collider) {
+    private int velocityMultiplier = VELOCITY_MULTIPLIER;
+    
+    void OnTriggerEnter(Collider collider) {
         if (collider.gameObject.tag == "Water") {
             oldX = player.transform.InverseTransformPoint(transform.position).x;
             hull.drag = WATER_DRAG;
@@ -36,20 +32,24 @@ public class HullMovement : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit(Collider collider) {
+    void OnTriggerExit(Collider collider) {
         if (collider.gameObject.tag == "Water") {
             hull.drag = DRAG;
             hull.angularDrag = ANGULAR_DRAG;
         }
     }
 
-    private void OnTriggerStay(Collider collider) {
+    void OnTriggerStay(Collider collider) {
         velocity = (oldX - player.transform.InverseTransformPoint(transform.position).x) * velocityMultiplier;
         oldX = player.transform.InverseTransformPoint(transform.position).x;
 
         if (collider.gameObject.tag == "Water") {
             moveHull();
         }
+    }
+
+    public void setVelocityMultiplier(int multiplier) {
+        velocityMultiplier = multiplier;
     }
 
     private void moveHull() {

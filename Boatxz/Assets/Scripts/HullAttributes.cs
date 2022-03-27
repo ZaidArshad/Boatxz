@@ -11,32 +11,30 @@ public class HullAttributes : MonoBehaviour {
     [SerializeField] GameObject torpedo;
     [SerializeField] Material hunterMaterial;
     [SerializeField] Text prompt;
-    public Transform startingPosition;
 
-    private PlayerDetector lastCheckpoint;
-    private int playerNumber;
-    private float torpedoCooldown = 1;
+    public Transform startingPosition { set; get; }
+    public PlayerDetector lastCheckpoint { set; get; }
+    public int playerNumber { private set; get; }
 
+    private float TORPEDO_COOLDOWN = 1;
     private Vector3 HUNTER_SCALE = new Vector3(6.90999985f*2,0.529999971f*2,2f*2);
     private const int RIGHTING_MULTIPLIER = 10;
-
-    private void Start() {
+    void Start() {
         playerNumber = MultiplayerManager.Instance.join(gameObject);
         startingPosition = MultiplayerManager.Instance.getStartingPosition(playerNumber);
         goToOriginalStart();
         MultiplayerManager.Instance.singlePlayer();
     }
 
-    private void Update() {
-        torpedoCooldown -= Time.deltaTime;
+    void Update() {
+        TORPEDO_COOLDOWN -= Time.deltaTime;
         selfRight();
         if (transform.position.y < -10 && !MultiplayerManager.Instance.isFightingMode()) {
             reset();
         }
-        
     }
 
-    private void OnCollisionEnter(Collision collider) {
+    void OnCollisionEnter(Collision collider) {
         if (collider.transform.tag == "Lava") {
             MultiplayerManager.Instance.leave(playerNumber);
         }
@@ -48,7 +46,7 @@ public class HullAttributes : MonoBehaviour {
         }
         if (collider.transform.tag == "Hull") {
             if (playerNumber == 0 && MultiplayerManager.Instance.gameMode == GameMode.BoatHunt) {
-                MultiplayerManager.Instance.leave(collider.gameObject.GetComponent<HullAttributes>().getPlayerNumber());
+                MultiplayerManager.Instance.leave(collider.gameObject.GetComponent<HullAttributes>().playerNumber);
             }
         }
     }
@@ -64,18 +62,6 @@ public class HullAttributes : MonoBehaviour {
 
     public void becomeHunted() {
         setVelocityMultiplier(20);
-    }
-
-    public void setLastCheckpoint(PlayerDetector checkpoint) {
-        lastCheckpoint = checkpoint;
-    }
-
-    public PlayerDetector getLastCheckpoint() {
-        return lastCheckpoint;
-    }
-
-    public int getPlayerNumber() {
-        return playerNumber;
     }
 
     public void setVelocityMultiplier(int multiplier) {
@@ -131,7 +117,7 @@ public class HullAttributes : MonoBehaviour {
         transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
-        public void goToOriginalStart() {
+    public void goToOriginalStart() {
         goToPosition(startingPosition);
     }
 
@@ -159,11 +145,11 @@ public class HullAttributes : MonoBehaviour {
     }
 
     private void shootTorpedo() {
-        if (torpedoCooldown < 0) { 
+        if (TORPEDO_COOLDOWN < 0) { 
             Vector3 position = transform.GetChild(1).position;
             Quaternion rotation = transform.GetChild(1).rotation;
             GameObject missle = Instantiate(torpedo, position, rotation);
-            torpedoCooldown = 1;
+            TORPEDO_COOLDOWN = 1;
         }
     }
 }

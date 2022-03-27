@@ -534,9 +534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b118affab6efdc4d8b091b9867ca535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hull: {fileID: 2083577389278837680}
-  depthBeforeSubmerged: 1
-  displacementAmount: 6
 --- !u!54 &2083577389278837680
 Rigidbody:
   m_ObjectHideFlags: 0

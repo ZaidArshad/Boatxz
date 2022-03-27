@@ -10,13 +10,13 @@ using UnityEngine.UI;
 /// </summary>
 public class Checkpoints : MonoBehaviour {
     [SerializeField] Text timeText; 
-    Stopwatch timer = new Stopwatch();
+    private Stopwatch timer = new Stopwatch();
 
-    private void Start() {
+    void Start() {
         setUpCheckpoints();
     }
 
-    private void Update() {
+    void Update() {
         if (MultiplayerManager.Instance.gameMode == GameMode.Speedrun) timeText.text = timer.Elapsed.ToString("g");
     }
 

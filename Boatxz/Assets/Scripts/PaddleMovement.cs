@@ -16,11 +16,14 @@ public class PaddleMovement : MonoBehaviour {
     private Rigidbody hullBody;
     private const float KNOTS_PER_METER = 1.94384f;
     private const string KNOT_SYMBOL_STR = "kn";
-
     private float leftX, leftY, rightX, rightY;
 
-    private void Start() {
+    void Start() {
         hullBody = gameObject.GetComponent<Rigidbody>();
+    }
+
+    void Update() {
+        paddle();
     }
 
     public void OnLeftX(InputAction.CallbackContext context) {
@@ -36,12 +39,7 @@ public class PaddleMovement : MonoBehaviour {
         rightY = -context.ReadValue<float>();
     }
 
-    // Update is called once per frame
-    void Update() {
-        paddle();
-    }
-
-    void paddle() {
+    private void paddle() {
         Vector3 p = leftPaddle.transform.parent.eulerAngles;
         speedText.text = Mathf.Abs(hullBody.velocity.magnitude * KNOTS_PER_METER).ToString("F2") + KNOT_SYMBOL_STR;
         leftPaddle.transform.eulerAngles = new Vector3(-range*leftX+p.x, -range*leftY+p.y, p.z);

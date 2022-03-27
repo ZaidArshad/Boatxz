@@ -38,6 +38,7 @@ public class Timer : MonoBehaviour
                 }
                 else {
                     text.text = "Prey win";
+                    MultiplayerManager.Instance.finishGame();
                 }
             }
             else {
