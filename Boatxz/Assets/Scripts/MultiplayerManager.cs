@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Controls the different player attributes and game modes
 /// </summary>
-public enum GameMode {Lobby, Speedrun, MultiplayerRace, MultiplayerBattle, BoatHunt};
+public enum GameMode {Lobby, Speedrun, MultiplayerRace, MultiplayerBattle, BoatHunt, Level};
 public class MultiplayerManager : MonoBehaviour {
     [SerializeField] GameObject startingCam;
     [SerializeField] Transform[] startingSpot = new Transform[4];
@@ -103,7 +103,7 @@ public class MultiplayerManager : MonoBehaviour {
     }
 
     public bool isSinglePlayer() {
-        return (gameMode == GameMode.Speedrun || gameMode == GameMode.Lobby);
+        return (gameMode == GameMode.Speedrun || gameMode == GameMode.Lobby || gameMode == GameMode.Level);
     }
 
     public bool isRaceMode() {

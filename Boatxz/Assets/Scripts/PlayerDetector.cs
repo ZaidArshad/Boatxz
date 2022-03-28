@@ -28,6 +28,9 @@ public class PlayerDetector : MonoBehaviour {
             else if (MultiplayerManager.Instance.gameMode == GameMode.MultiplayerRace)  {
                 race(collider);
             }
+            else if (MultiplayerManager.Instance.gameMode == GameMode.Level)  {
+                goToNextLevel(collider);
+            }
         }
     }
 
@@ -87,6 +90,18 @@ public class PlayerDetector : MonoBehaviour {
                 place++;
                 MultiplayerManager.Instance.finishGame();
             }
+        }
+    }
+
+    private void goToNextLevel(Collider collider) {
+        int buildIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        UnityEngine.Debug.Log(buildIndex + " " + UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings);
+        
+        if (UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings > buildIndex+1) {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(buildIndex+1);
+        }
+        else {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }
 }
