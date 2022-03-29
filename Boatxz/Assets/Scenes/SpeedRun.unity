@@ -430,6 +430,26 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2083577389678361082, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577389678361082, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577389678361082, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083577389678361082, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428373927022593754, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3137028724434437516, guid: 98238339a5a8a1d4cb109fe5ae48e419, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1174,7 +1194,7 @@ PrefabInstance:
     - target: {fileID: 6235795132534535889, guid: b3480cbe2cd1270409734368093eb098, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 05808d5bbcd92624daf264c809e93188, type: 2}
+      objectReference: {fileID: 2100000, guid: 28749a1e7604c7445bec099d0d23c0f8, type: 2}
     - target: {fileID: 6235795132534535891, guid: b3480cbe2cd1270409734368093eb098, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1406,6 +1426,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: be87a41689790724c93c1fd1b175edaf, type: 2}
   - {fileID: 2100000, guid: 66814b080a91acd41b9caa246dcc12f4, type: 2}
   - {fileID: 2100000, guid: c622859beccb2de4aa4b2260adb0f3c5, type: 2}
+  screenCanvas: {fileID: 0}
   gameMode: 1
   numOfPlayers: 0
 --- !u!4 &1681976172
