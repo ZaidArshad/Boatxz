@@ -13,9 +13,14 @@ public class Floater : MonoBehaviour {
 
     void FixedUpdate() {
         Rigidbody hull = transform.GetComponent<Rigidbody>();
-        if ((MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle && MultiplayerManager.Instance.gameMode != GameMode.Lobby) || onWater) {
+        if ((MultiplayerManager.Instance.gameMode != GameMode.MultiplayerBattle && MultiplayerManager.Instance.gameMode != GameMode.Lobby
+        && MultiplayerManager.Instance.gameMode != GameMode.Level) || onWater) {
+            Debug.Log(true);    
             float displacementMultiplier = Mathf.Clamp01((-transform.position.y) / DEPTH_BEFORE_SUBMERGED) * DISPLACEMENT_AMOUNT;
             hull.AddForce(new Vector3(0f, Mathf.Abs(Physics.gravity.y)* displacementMultiplier, 0f), ForceMode.Acceleration);
+        }
+        else {
+            Debug.Log(false);    
         }
     }
 
