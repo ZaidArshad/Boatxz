@@ -36,7 +36,8 @@ public class HullAttributes : MonoBehaviour {
 
     void OnCollisionEnter(Collision collider) {
         if (collider.transform.tag == "Lava") {
-            MultiplayerManager.Instance.leave(playerNumber);
+            if (MultiplayerManager.Instance.gameMode == GameMode.Level) reset();
+            else MultiplayerManager.Instance.leave(playerNumber);
         }
         if (collider.transform.tag == "Torpedo") {
             Rigidbody hull = gameObject.GetComponent<Rigidbody>();
