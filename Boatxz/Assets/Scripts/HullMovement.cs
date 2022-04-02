@@ -14,7 +14,7 @@ public class HullMovement : MonoBehaviour {
     public const int VELOCITY_MULTIPLIER = 30;
     public const int HUNTER_VELOCITY_MULTIPLIER = 60;
     private const float TURN_COEFFIECENT = 0.10f;
-    private const float ELEVATION_COEFFIECENT = 0.1f;
+    private const float ELEVATION_COEFFIECENT = 0f;
     private const float WATER_DRAG = 0.5f;
     private const float WATER_ANGULAR_DRAG = 0.5f;
     private const float DRAG = 0.1f;
@@ -54,7 +54,7 @@ public class HullMovement : MonoBehaviour {
 
     private void moveHull() {
         if (MultiplayerManager.Instance.isGameStarted()) {
-            hull.AddRelativeForce(new Vector3(velocity, velocity*ELEVATION_COEFFIECENT, 0f), ForceMode.Acceleration);
+            hull.AddRelativeForce(new Vector3(velocity, 0f, 0f), ForceMode.Acceleration);
             if (leftPaddle) {
                 hull.AddTorque(0f, velocity*TURN_COEFFIECENT, 0, ForceMode.Acceleration);
             }

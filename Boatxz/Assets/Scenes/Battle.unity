@@ -297,7 +297,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 10000
+  m_Intensity: 4176.478
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -340,7 +340,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 15000
+  m_ColorTemperature: 10216
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 10000
+  m_Intensity: 4176.478
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -1176,6 +1176,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TexturedWater
       objectReference: {fileID: 0}
+    - target: {fileID: 6235795132534535889, guid: b3480cbe2cd1270409734368093eb098, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235795132534535889, guid: b3480cbe2cd1270409734368093eb098, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235795132534535889, guid: b3480cbe2cd1270409734368093eb098, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 05808d5bbcd92624daf264c809e93188, type: 2}
     - target: {fileID: 6235795132534535891, guid: b3480cbe2cd1270409734368093eb098, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -11,6 +11,7 @@ public class HullAttributes : MonoBehaviour {
     [SerializeField] GameObject torpedo;
     [SerializeField] Material hunterMaterial;
     [SerializeField] Text prompt;
+    [SerializeField] int deathBound = -10;
 
     public Transform startingPosition { set; get; }
     public PlayerDetector lastCheckpoint { set; get; }
@@ -29,7 +30,7 @@ public class HullAttributes : MonoBehaviour {
     void Update() {
         TORPEDO_COOLDOWN -= Time.deltaTime;
         selfRight();
-        if (transform.position.y < -10 && !MultiplayerManager.Instance.isFightingMode()) {
+        if (transform.position.y < deathBound && !MultiplayerManager.Instance.isFightingMode()) {
             reset();
         }
     }
